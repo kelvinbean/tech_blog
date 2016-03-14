@@ -1,0 +1,20 @@
+doctype
+html
+	head
+		link(rel="stylesheet/less", href="/less/index.less")
+		script(src="/libs/less/dist/less.min.js")
+	body.clearfix
+		article.wrap
+			article.logo
+				img(src="/images/logo.png")
+				span 前端之家
+			nav.menu
+				ul
+					li: a 技术分享
+					//- li: a 资源分享
+					li: a 团队介绍
+			section.list
+				a.item(href="/detail")
+					img(src='/images/1.png')
+					h3 技术分享第一课
+					p kelvin

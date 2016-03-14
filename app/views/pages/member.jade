@@ -1,0 +1,44 @@
+extends ../layout
+
+block content
+	.container
+		.row
+			form.form-horizontal(method="post",action="/admin/member",enctype="multipart/form-data")
+				if member._id
+					input(type="hidden",name="member[_id]",value=member._id)
+				.form-group
+					label.col-sm-2.control-label 姓名
+					.col-sm-10
+						input.form-control(type="text",name="member[name]",value=member.name)
+				.form-group
+					label.col-sm-2.control-label 性别
+					.col-sm-10
+						label.radio-inline
+							input(type="radio",value="1",name="member[sex]",checked=!member.sex||member.sex==1)
+							span 男
+						label.radio-inline
+							input(type="radio",value="0",name="member[sex]",checked=member.sex==0)
+							span 女
+				.form-group
+					label.col-sm-2.control-label 年龄
+					.col-sm-10
+						input.form-control(type="text",name="member[age]",value=member.age)
+				.form-group
+					label.col-sm-2.control-label 职位
+					.col-sm-10
+						input.form-control(type="text",name="member[job]",value=member.job)
+				.form-group
+					label.col-sm-2.control-label 个人网站
+					.col-sm-10
+						input.form-control(type="text",name="member[website]",value=member.website)
+				.form-group
+					label.col-sm-2.control-label 头像
+					.col-sm-10
+						input(type="file",name="member[image]",value=member.image)
+				.form-group
+					label.col-sm-2.control-label 简介
+					.col-sm-10
+						textarea.form-control(name="member[content]") #{member.content}
+				.form-group
+					.col-sm-10.col-sm-offset-2
+						button.btn.btn-default(type="submit") 提交

@@ -1,0 +1,17 @@
+extends ../layout
+
+block customless
+	link(rel="stylesheet/less", href="/less/memberdetail.less")
+	script(src="/libs/less/dist/less.min.js")
+
+block content
+	.container.member-container
+		.row
+			.col-sm-5
+				img.user-head(src="/upload/#{member.image}", alt="")
+			.col-sm-7
+				.member-info
+					p 姓名：#{member.name}
+					p 职业：#{member.job}
+					p 个人网站：
+						a(href="#{member.website}" target="_blank") #{member.website}
