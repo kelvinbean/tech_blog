@@ -111,3 +111,17 @@ exports.list = function(req,res){
 		});
 	});
 }
+
+// 删除
+exports.del = function(req,res){
+	var id = req.query.id;
+	if(id){
+		Member.remove({_id:id},function(err,member){
+			if(err){
+				console.log(err);
+			}else{
+				res.json({success:1});
+			}
+		})
+	}
+}

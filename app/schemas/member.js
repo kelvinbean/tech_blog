@@ -7,8 +7,7 @@ var MemberSchema =  new mongoose.Schema({
 	age:Number,//年龄
 	sex:String,//性别
 	image:String,//头像
-	website:String, //个人网站
-	del:Number//是否删除
+	website:String //个人网站
 });
 
 

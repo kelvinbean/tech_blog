@@ -11,7 +11,8 @@ module.exports = function(app){
 	app.get('/member/list',Member.list);
 	app.get('/admin/member/update/:id',Member.edit);
 	app.get('/admin/member/:id',Member.details);
+	app.delete('/admin/member/list',Member.del);
 
 	// article
-
+	
 };

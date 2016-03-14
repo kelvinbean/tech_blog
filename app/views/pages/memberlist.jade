@@ -17,7 +17,7 @@ block content
 					th 删除
 				tbody
 					each item in members
-						tr
+						tr(class="item-id-#{item._id}")
 							td #{item.name}
 							td
 								if item.sex==1
@@ -30,3 +30,4 @@ block content
 							td: a(href="/admin/member/#{item._id}",target="_blank") 查看
 							td: a(href="/admin/member/update/#{item._id}",target="_blank") 修改
 							td: button.btn.btn-danger.del(type="button", data-id="#{item._id}") 删除
+	script(src="/js/admin.js")
