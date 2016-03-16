@@ -10,11 +10,12 @@ html
 				span 前端之家
 			nav.menu
 				ul
-					li: a 技术分享
+					li: a(href="/") 技术分享
 					//- li: a 资源分享
 					li: a 团队介绍
 			section.list
-				a.item(href="/detail")
-					img(src='/images/1.png')
-					h3 技术分享第一课
-					p kelvin
+				each item in articles
+					a.item(href="/article/#{item._id}")
+						img(src='/upload/#{item.image}')
+						h3 #{item.title}
+						p #{item.author}

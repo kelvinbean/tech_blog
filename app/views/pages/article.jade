@@ -1,0 +1,41 @@
+extends ../layout
+
+block content
+	.container
+		.row
+			form.form-horizontal(method="post",action="/admin/article/add",enctype="multipart/form-data")
+				if article._id
+					input(type="hidden",name="article[_id]",value=article._id)			
+				.form-group
+					label.col-sm-2.control-label 标题
+					.col-sm-10
+						input.form-control(type="text",name="article[title]",value=article.title)
+				if article.image
+					.form-group
+						label.col-sm-2.control-label 头像路径
+						.col-sm-10
+							input.form-control(type="text",readonly="readonly",name="imagenow",value=article.image)
+				.form-group
+					label.col-sm-2.control-label 缩略图
+					.col-sm-10
+						input(type="file",name="article[image]")
+				.form-group
+					label.col-sm-2.control-label 简介
+					.col-sm-10
+						textarea.form-control(name="article[des]") #{article.des}
+				.form-group
+					label.col-sm-2.control-label 内容
+					.col-sm-10
+						textarea.form-control(name="article[content]") #{article.content}
+				.form-group
+					label.col-sm-2.control-label 是否显示
+					.col-sm-10
+						label.radio-inline
+							input(type="radio",value="1",name="article[display]",checked=!article.display||article.display==1)
+							span 是
+						label.radio-inline
+							input(type="radio",value="0",name="article[display]",checked=article.display==0)
+							span 否
+				.form-group
+					.col-sm-10.col-sm-offset-2
+						button.btn.btn-default(type="submit") 提交

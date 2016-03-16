@@ -1,0 +1,33 @@
+extends ../layout
+
+block content
+	.container
+		a.pull-right(href="/admin/article") 新增
+	.container
+		.row
+			table.table.table-hover.table-bordered
+				thead
+					th 标题
+					th 作者
+					th 创建时间
+					th 是否显示
+					th 点击量
+					th 查看
+					th 修改
+					th 删除
+				tbody
+					each item in articles
+						tr(class="item-id-#{item._id}")
+							td #{item.title}
+							td #{item.author}
+							td #{item.meta.createdtime}
+							td
+								if item.display==1
+									|是
+								else
+									|否	
+							td #{item.hits}
+							td: a(href="/article/#{item._id}",target="_blank") 查看
+							td: a(href="/admin/article/update/#{item._id}",target="_blank") 修改
+							td: button.btn.btn-danger.del(type="button", data-id="#{item._id}",data-type="article") 删除
+	script(src="/js/admin.js")

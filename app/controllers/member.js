@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var Member =  require('../models/member');
+var Member =	require('../models/member');
 var fs = require('fs');
 var path = require('path');
 var _ = require('underscore');
@@ -48,7 +48,7 @@ exports.saveImg = function(req,res,next){
 				console.log(err);
 			}
 
-			var timestamp =  Date.now();
+			var timestamp =	Date.now();
 			var type = image.type.split('/')[1];
 			var head = timestamp+'.'+type;
 			var newPath = path.join(__dirname,'../../','/public/upload/'+head);
@@ -125,3 +125,56 @@ exports.del = function(req,res){
 		})
 	}
 }
+
+//登录
+exports.signin = function(req,res){
+	var _member = req.body.user;
+	console.log(_member);
+	var username = _member.username;
+	var password = _member.password;
+
+	Member.findOne({username: username}, function(err, member) {
+		if (err) {
+			console.log(err);
+		}
+
+		if (!member) {
+			// return res.redirect('/signup')
+			console.log('该用户名不存在');
+			return res.redirect('/admin');
+		}
+
+		member.comparePassword(password, function(err, isMatch) {
+			if (err) {
+				console.log(err);
+			}
+
+			if (isMatch) {
+				req.session.user = member;
+				return res.redirect('/member/list');
+			}
+			else {
+				// return res.redirect('/signin');
+				console.log('输入密码不正确');
+				return res.redirect('/admin');
+			}
+		})
+	})
+}
+
+// 登出
+exports.logout = function(req,res){
+	delete req.session.user;
+	res.redirect('/admin');
+}
+
+//验证是否登录
+exports.signinRequired = function(req,res,next){
+	var user =  req.session.user;
+	if(!user){
+		return res.redirect('/admin');
+	}else{
+		next();
+	}
+}
+

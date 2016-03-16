@@ -3,9 +3,18 @@ extends ../layout
 block content
 	.container
 		.row
-			form.form-horizontal(method="post",action="/admin/member",enctype="multipart/form-data")
+			form.form-horizontal(method="post",action="/admin/member/add",enctype="multipart/form-data")
 				if member._id
 					input(type="hidden",name="member[_id]",value=member._id)
+				.form-group
+					label.col-sm-2.control-label 用户名
+					.col-sm-10
+						input.form-control(type="text",name="member[username]",value=member.username)
+				if !member.password
+					.form-group
+						label.col-sm-2.control-label 密码
+						.col-sm-10
+							input.form-control(type="text",name="member[password]",placeholder="密码不能修改！")					
 				.form-group
 					label.col-sm-2.control-label 姓名
 					.col-sm-10
@@ -31,10 +40,15 @@ block content
 					label.col-sm-2.control-label 个人网站
 					.col-sm-10
 						input.form-control(type="text",name="member[website]",value=member.website)
+				if member.image
+					.form-group
+						label.col-sm-2.control-label 头像路径
+						.col-sm-10
+							input.form-control(type="text",readonly="readonly",name="imagenow",value=member.image)
 				.form-group
 					label.col-sm-2.control-label 头像
 					.col-sm-10
-						input(type="file",name="member[image]",value=member.image)
+						input(type="file",name="member[image]")
 				.form-group
 					label.col-sm-2.control-label 简介
 					.col-sm-10

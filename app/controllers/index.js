@@ -1,7 +1,18 @@
 var mongoose = require('mongoose');
+var Article = require('../models/article');
 
 exports.index = function(req,res){
-	res.render('index',{
-		title:'前端技术首页'
+	Article.find({'display':'1'},function(err,articles){
+		if(err){
+			console.log(err);
+		}
+		res.render('index',{
+			articles:articles
+		});
+
 	})
 };
+
+exports.admin = function(req,res){
+	res.render('admin');
+}

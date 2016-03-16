@@ -1,0 +1,14 @@
+html
+	head
+		link(rel="stylesheet/less", href="/less/detail.less")
+		script(src="/libs/less/dist/less.min.js")
+	body
+		article.wrap
+			section.detail-head.clearfix
+				div.left
+					img(src="/upload/#{article.image}")
+				div.right
+					p.title #{article.title}
+					p.info #{article.author} | #{moment(article.meta.refreshtime).format('YYYY.MM.DD hh.mm')}
+			section.detail-content
+				p #{article.content}
